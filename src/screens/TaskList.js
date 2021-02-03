@@ -41,7 +41,6 @@ export default class TaskList extends Component{
     componentDidMount = async () => {
         this.filterTasks()
         const stateString = await AsyncStorage.getItem('tasksState')
-        console.log(stateString)
         const state = JSON.parse(stateString) || initialState
         this.setState(state, this.filterTasks)
     }
@@ -58,10 +57,7 @@ export default class TaskList extends Component{
         }
 
         this.setState({visibleTasks})
-        console.log('Antes'+this.state)
         await AsyncStorage.setItem('tasksState',JSON.stringify(this.state))
-        const stateString = await AsyncStorage.getItem('tasksState')
-        console.log('Depois'+stateString)
 
     }
 
